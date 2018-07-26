@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Map;
 
 public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
+  private ZendeskFeedbackConfiguration requestConfig;
+
   public RNZenDeskSupportModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
@@ -73,7 +75,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void setupRequests(final ReadableMap options) {
-    ZendeskFeedbackConfiguration configuration = new BaseZendeskFeedbackConfiguration() {
+    this.requestConfig = new BaseZendeskFeedbackConfiguration() {
       @Override
       public String getRequestSubject() {
         return options.getString("subject");
@@ -81,14 +83,18 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
       @Override
       public List<String> getTags() {
-        ReadableArray readableTags = options.getArray("tags");
-        List<String> tags = new ArrayList<>();
+        if (options.hasKey("tags")) {
+          ReadableArray readableTags = options.getArray("tags");
+          List<String> tags = new ArrayList<>();
 
-        for (int i = 0; i < readableTags.size(); i++) {
-          tags.add(readableTags.getString(i));
+          for (int i = 0; i < readableTags.size(); i++) {
+            tags.add(readableTags.getString(i));
+          }
+
+          return tags;
         }
 
-        return tags;
+        return null;
       }
 
       @Override
@@ -170,13 +176,10 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void supportHistory() {
-
     Activity activity = getCurrentActivity();
 
-    if(activity != null){
-        Intent supportHistoryIntent = new Intent(getReactApplicationContext(), RequestActivity.class);
-        supportHistoryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getReactApplicationContext().startActivity(supportHistoryIntent);
+    if (activity != null) {
+      RequestActivity.startActivity(activity, this.requestConfig);
     }
   }
 
