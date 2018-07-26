@@ -27,6 +27,58 @@ RCT_EXPORT_METHOD(initialize:(NSDictionary *)config){
      clientId:clientId];
 }
 
+RCT_EXPORT_METHOD(applyTheme:(NSDictionary *)options){
+    ZDKTheme * theme = [ZDKTheme baseTheme];
+
+    UIColor *primaryTextColor = [RCTConvert UIColor:options[@"primaryTextColor"]];
+    UIColor *secondaryTextColor = [RCTConvert UIColor:options[@"secondaryTextColor"]];
+    UIColor *primaryBackgroundColor = [RCTConvert UIColor:options[@"primaryBackgroundColor"]];
+    UIColor *secondaryBackgroundColor = [RCTConvert UIColor:options[@"secondaryBackgroundColor"]];
+    UIColor *emptyBackgroundColor = [RCTConvert UIColor:options[@"emptyBackgroundColor"]];
+    UIColor *metaTextColor = [RCTConvert UIColor:options[@"metaTextColor"]];
+    UIColor *separatorColor = [RCTConvert UIColor:options[@"separatorColor"]];
+    UIColor *inputFieldTextColor = [RCTConvert UIColor:options[@"inputFieldTextColor"]];
+    UIColor *inputFieldBackgroundColor = [RCTConvert UIColor:options[@"inputFieldBackgroundColor"]];
+    UIColor *fontName = [RCTConvert NSString:options[@"fontName"]];
+    UIColor *boldFontName = [RCTConvert NSString:options[@"boldFontName"]];
+
+    if (primaryTextColor != nil) {
+        theme.primaryTextColor = primaryTextColor;
+    }
+    if (secondaryTextColor != nil) {
+        theme.secondaryTextColor = secondaryTextColor;
+    }
+    if (primaryBackgroundColor != nil) {
+        theme.primaryBackgroundColor = primaryBackgroundColor;
+    }
+    if (secondaryBackgroundColor != nil) {
+        theme.secondaryBackgroundColor = secondaryBackgroundColor;
+    }
+    if (emptyBackgroundColor != nil) {
+        theme.emptyBackgroundColor = emptyBackgroundColor;
+    }
+    if (metaTextColor != nil) {
+        theme.metaTextColor = metaTextColor;
+    }
+    if (separatorColor != nil) {
+        theme.separatorColor = separatorColor;
+    }
+    if (inputFieldTextColor != nil) {
+        theme.inputFieldTextColor = inputFieldTextColor;
+    }
+    if (emptyBackgroundColor != nil) {
+        theme.inputFieldBackgroundColor = inputFieldBackgroundColor;
+    }
+    if (fontName != nil) {
+        theme.fontName = fontName;
+    }
+    if (boldFontName != nil) {
+        theme.boldFontName = boldFontName;
+    }
+
+    [theme apply];
+}
+
 RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){
     dispatch_async(dispatch_get_main_queue(), ^{
         ZDKAnonymousIdentity *zdIdentity = [ZDKAnonymousIdentity new];
