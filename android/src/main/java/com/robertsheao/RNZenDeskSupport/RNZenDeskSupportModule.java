@@ -23,12 +23,17 @@ import com.zendesk.sdk.model.access.AnonymousIdentity;
 import com.zendesk.sdk.model.access.Identity;
 import com.zendesk.sdk.model.request.CustomField;
 import com.zendesk.sdk.network.impl.ZendeskConfig;
+import com.zendesk.sdk.feedback.BaseZendeskFeedbackConfiguration;
+import com.zendesk.sdk.feedback.ZendeskFeedbackConfiguration;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
+  private ZendeskFeedbackConfiguration requestConfig;
+
   public RNZenDeskSupportModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
@@ -54,19 +59,50 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-    public void setupIdentity(ReadableMap identity) {
-      AnonymousIdentity.Builder builder = new AnonymousIdentity.Builder();
+  public void setupIdentity(ReadableMap identity) {
+    AnonymousIdentity.Builder builder = new AnonymousIdentity.Builder();
 
-      if (identity != null && identity.hasKey("customerEmail")) {
-        builder.withEmailIdentifier(identity.getString("customerEmail"));
-      }
-
-      if (identity != null && identity.hasKey("customerName")) {
-        builder.withNameIdentifier(identity.getString("customerName"));
-      }
-
-      ZendeskConfig.INSTANCE.setIdentity(builder.build());
+    if (identity != null && identity.hasKey("customerEmail")) {
+      builder.withEmailIdentifier(identity.getString("customerEmail"));
     }
+
+    if (identity != null && identity.hasKey("customerName")) {
+      builder.withNameIdentifier(identity.getString("customerName"));
+    }
+
+    ZendeskConfig.INSTANCE.setIdentity(builder.build());
+  }
+
+  @ReactMethod
+  public void setupRequests(final ReadableMap options) {
+    this.requestConfig = new BaseZendeskFeedbackConfiguration() {
+      @Override
+      public String getRequestSubject() {
+        return options.getString("subject");
+      }
+
+      @Override
+      public List<String> getTags() {
+        if (options.hasKey("tags")) {
+          ReadableArray readableTags = options.getArray("tags");
+          List<String> tags = new ArrayList<>();
+
+          for (int i = 0; i < readableTags.size(); i++) {
+            tags.add(readableTags.getString(i));
+          }
+
+          return tags;
+        }
+
+        return null;
+      }
+
+      @Override
+      public String getAdditionalInfo() {
+        return options.getString("additionalRequestInfo");
+      }
+    };
+  }
 
   @ReactMethod
   public void showHelpCenterWithOptions(ReadableMap options) {
@@ -140,13 +176,10 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void supportHistory() {
-
     Activity activity = getCurrentActivity();
 
-    if(activity != null){
-        Intent supportHistoryIntent = new Intent(getReactApplicationContext(), RequestActivity.class);
-        supportHistoryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getReactApplicationContext().startActivity(supportHistoryIntent);
+    if (activity != null) {
+      RequestActivity.startActivity(activity, this.requestConfig);
     }
   }
 

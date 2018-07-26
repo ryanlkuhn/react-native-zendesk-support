@@ -95,6 +95,24 @@ RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){
     });
 }
 
+RCT_EXPORT_METHOD(setupRequests:(NSDictionary *)options){
+    [ZDKRequests configure:^(ZDKAccount *account, ZDKRequestCreationConfig *requestCreationConfig) {
+        NSString *subject = [RCTConvert NSString:options[@"subject"]];
+        NSArray<NSString *> *tags = [RCTConvert NSStringArray:options[@"tags"]];
+        NSString *additionalRequestInfo = [RCTConvert NSString:options[@"additionalRequestInfo"]];
+
+        if (subject != nil) {
+            requestCreationConfig.subject = subject;
+        }
+        if (tags != nil) {
+            requestCreationConfig.tags = tags;
+        }
+        if (additionalRequestInfo != nil) {
+            requestCreationConfig.additionalRequestInfo = additionalRequestInfo;
+        }
+    }];
+}
+
 RCT_EXPORT_METHOD(showHelpCenterWithOptions:(NSDictionary *)options) {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
