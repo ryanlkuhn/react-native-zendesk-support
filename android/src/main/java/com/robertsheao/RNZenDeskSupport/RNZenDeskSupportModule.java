@@ -23,7 +23,10 @@ import com.zendesk.sdk.model.access.AnonymousIdentity;
 import com.zendesk.sdk.model.access.Identity;
 import com.zendesk.sdk.model.request.CustomField;
 import com.zendesk.sdk.network.impl.ZendeskConfig;
+import com.zendesk.sdk.feedback.BaseZendeskFeedbackConfiguration;
+import com.zendesk.sdk.feedback.ZendeskFeedbackConfiguration;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,19 +57,46 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-    public void setupIdentity(ReadableMap identity) {
-      AnonymousIdentity.Builder builder = new AnonymousIdentity.Builder();
+  public void setupIdentity(ReadableMap identity) {
+    AnonymousIdentity.Builder builder = new AnonymousIdentity.Builder();
 
-      if (identity != null && identity.hasKey("customerEmail")) {
-        builder.withEmailIdentifier(identity.getString("customerEmail"));
-      }
-
-      if (identity != null && identity.hasKey("customerName")) {
-        builder.withNameIdentifier(identity.getString("customerName"));
-      }
-
-      ZendeskConfig.INSTANCE.setIdentity(builder.build());
+    if (identity != null && identity.hasKey("customerEmail")) {
+      builder.withEmailIdentifier(identity.getString("customerEmail"));
     }
+
+    if (identity != null && identity.hasKey("customerName")) {
+      builder.withNameIdentifier(identity.getString("customerName"));
+    }
+
+    ZendeskConfig.INSTANCE.setIdentity(builder.build());
+  }
+
+  @ReactMethod
+  public void setupRequests(final ReadableMap options) {
+    ZendeskFeedbackConfiguration configuration = new BaseZendeskFeedbackConfiguration() {
+      @Override
+      public String getRequestSubject() {
+        return options.getString("subject");
+      }
+
+      @Override
+      public List<String> getTags() {
+        ReadableArray readableTags = options.getArray("tags");
+        List<String> tags = new ArrayList<>();
+
+        for (int i = 0; i < readableTags.size(); i++) {
+          tags.add(readableTags.getString(i));
+        }
+
+        return tags;
+      }
+
+      @Override
+      public String getAdditionalInfo() {
+        return options.getString("additionalRequestInfo");
+      }
+    };
+  }
 
   @ReactMethod
   public void showHelpCenterWithOptions(ReadableMap options) {
