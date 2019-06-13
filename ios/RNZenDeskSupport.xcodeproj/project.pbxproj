@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		13BE3DEE1AC21097009241FE /* RNZenDeskSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */; };
+		B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */; };
+		B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */; };
+		B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */; };
 		CD3381921F580E70006C733C /* RNZenDeskSupport.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13BE3DEC1AC21097009241FE /* RNZenDeskSupport.h */; };
-		CDF0AE561F589A7000E02B24 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF0AE521F589A7000E02B24 /* ZendeskProviderSDK.framework */; };
-		CDF0AE571F589A7000E02B24 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF0AE541F589A7000E02B24 /* ZendeskSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,10 +31,10 @@
 		134814201AA4EA6300B7C361 /* libRNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNZenDeskSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BE3DEC1AC21097009241FE /* RNZenDeskSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNZenDeskSupport.h; sourceTree = "<group>"; };
 		13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZenDeskSupport.m; sourceTree = "<group>"; };
-		CDF0AE521F589A7000E02B24 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
-		CDF0AE531F589A7000E02B24 /* ZendeskSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDK.bundle; sourceTree = "<group>"; };
-		CDF0AE541F589A7000E02B24 /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
-		CDF0AE551F589A7000E02B24 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
+		B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZendeskSDKStrings.bundle; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskSDKStrings.bundle"; sourceTree = "<group>"; };
+		B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskCoreSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskCoreSDK.framework"; sourceTree = "<group>"; };
+		B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskProviderSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskProviderSDK.framework"; sourceTree = "<group>"; };
+		B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskSDK.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDF0AE571F589A7000E02B24 /* ZendeskSDK.framework in Frameworks */,
-				CDF0AE561F589A7000E02B24 /* ZendeskProviderSDK.framework in Frameworks */,
+				B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */,
+				B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */,
+				B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,10 +72,10 @@
 		CDF0AE511F589A1000E02B24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CDF0AE521F589A7000E02B24 /* ZendeskProviderSDK.framework */,
-				CDF0AE531F589A7000E02B24 /* ZendeskSDK.bundle */,
-				CDF0AE541F589A7000E02B24 /* ZendeskSDK.framework */,
-				CDF0AE551F589A7000E02B24 /* ZendeskSDKStrings.bundle */,
+				B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */,
+				B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */,
+				B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */,
+				B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +119,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -227,10 +230,7 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
 				HEADER_SEARCH_PATHS = (
 					"${SYMROOT}",
 					"$(SRCROOT)/../../react-native/React/**",
@@ -245,10 +245,7 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
 				HEADER_SEARCH_PATHS = (
 					"${SYMROOT}",
 					"$(SRCROOT)/../../react-native/React/**",
