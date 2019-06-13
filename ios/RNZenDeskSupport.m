@@ -13,7 +13,7 @@
 
 #import "RNZenDeskSupport.h"
 #import <ZendeskSDK/ZendeskSDK.h>
-# import <ZendeskCoreSDK/ZendeskCoreSDK.h>
+#import <ZendeskCoreSDK/ZendeskCoreSDK.h>
 
 @implementation RNZenDeskSupport
 
@@ -24,6 +24,7 @@ RCT_EXPORT_METHOD(initialize:(NSDictionary *)config){
     NSString *zendeskUrl = [RCTConvert NSString:config[@"zendeskUrl"]];
     NSString *clientId = [RCTConvert NSString:config[@"clientId"]];
     [ZDKZendesk initializeWithAppId:appId clientId:clientId zendeskUrl:zendeskUrl];
+    [ZDKSupport initializeWithZendesk:[ZDKZendesk instance]];
 }
 
 RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){
@@ -34,7 +35,7 @@ RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){
         
         id<ZDKObjCIdentity> zdIdentity = [[ZDKObjCAnonymous alloc] initWithName:name email:email];
         [[ZDKZendesk instance] setIdentity:zdIdentity];
-
+        
     });
 }
 
@@ -44,16 +45,8 @@ RCT_EXPORT_METHOD(showHelpCenterWithOptions:(NSDictionary *)options) {
         
         UIViewController *vc = [window rootViewController];
         
-        ZDKHelpCenterOverviewContentModel *helpCenterContentModel = [ZDKHelpCenterOverviewContentModel defaultContent];
-        helpCenterContentModel.hideContactSupport = [RCTConvert BOOL:options[@"hideContactSupport"]];
-        ZDKHelpCenterUiConfiguration* helpCenterUiConfig = [ZDKHelpCenterUiConfiguration new];
-        if (helpCenterContentModel.hideContactSupport) {
-            [helpCenterUiConfig setHideContactSupport:YES];
-        }
-        vc.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[helpCenterUiConfig]];
-        [vc.navigationController pushViewController:helpCenter animated:YES];
+        UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUi];
+        [vc presentViewController:helpCenter animated:YES completion:nil];
     });
 }
 
@@ -137,9 +130,9 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
         UIViewController *vc = [window rootViewController];
-
+        
         NSMutableArray *fields = [[NSMutableArray alloc] init];
-
+        
         for (NSString* key in customFields) {
             id value = [customFields objectForKey:key];
             [fields addObject: [[ZDKCustomField alloc] initWithFieldId:@(key.intValue) andValue:value]];

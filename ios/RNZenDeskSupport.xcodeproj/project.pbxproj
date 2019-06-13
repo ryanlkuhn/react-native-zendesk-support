@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		13BE3DEE1AC21097009241FE /* RNZenDeskSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */; };
 		92B2BDA028D021A71CFB7A58 /* libPods-RNZenDeskSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */; };
-		B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */; };
-		B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */; };
-		B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */; };
+		B5BE3BCE22B29B0400C83213 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BE3BCD22B29B0400C83213 /* ZendeskSDK.framework */; };
+		B5BE3BD122B29B2C00C83213 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BE3BD022B29B2C00C83213 /* ZendeskProviderSDK.framework */; };
+		B5BE3BD322B29B3400C83213 /* ZendeskCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BE3BD222B29B3400C83213 /* ZendeskCoreSDK.framework */; };
 		CD3381921F580E70006C733C /* RNZenDeskSupport.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13BE3DEC1AC21097009241FE /* RNZenDeskSupport.h */; };
 /* End PBXBuildFile section */
 
@@ -35,10 +35,10 @@
 		47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNZenDeskSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9766B6AABE94983416CAB7BB /* Pods-RNZenDeskSupport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.debug.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.debug.xcconfig"; sourceTree = "<group>"; };
 		A337F1B562B365350AB84AAB /* Pods-RNZenDeskSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.release.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.release.xcconfig"; sourceTree = "<group>"; };
-		B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZendeskSDKStrings.bundle; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskSDKStrings.bundle"; sourceTree = "<group>"; };
-		B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskCoreSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskCoreSDK.framework"; sourceTree = "<group>"; };
-		B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskProviderSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskProviderSDK.framework"; sourceTree = "<group>"; };
-		B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskSDK.framework"; sourceTree = "<group>"; };
+		B5BE3BCD22B29B0400C83213 /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
+		B5BE3BCF22B29B2000C83213 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
+		B5BE3BD022B29B2C00C83213 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
+		B5BE3BD222B29B3400C83213 /* ZendeskCoreSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskCoreSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */,
-				B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */,
-				B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */,
+				B5BE3BCE22B29B0400C83213 /* ZendeskSDK.framework in Frameworks */,
+				B5BE3BD122B29B2C00C83213 /* ZendeskProviderSDK.framework in Frameworks */,
 				92B2BDA028D021A71CFB7A58 /* libPods-RNZenDeskSupport.a in Frameworks */,
+				B5BE3BD322B29B3400C83213 /* ZendeskCoreSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,10 +87,10 @@
 		CDF0AE511F589A1000E02B24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */,
-				B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */,
-				B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */,
-				B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */,
+				B5BE3BD222B29B3400C83213 /* ZendeskCoreSDK.framework */,
+				B5BE3BD022B29B2C00C83213 /* ZendeskProviderSDK.framework */,
+				B5BE3BCF22B29B2000C83213 /* ZendeskSDKStrings.bundle */,
+				B5BE3BCD22B29B0400C83213 /* ZendeskSDK.framework */,
 				47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */,
 			);
 			name = Frameworks;
@@ -291,7 +291,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9766B6AABE94983416CAB7BB /* Pods-RNZenDeskSupport.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/\"",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"${SYMROOT}",
 					"$(SRCROOT)/../../react-native/React/**",
@@ -307,7 +310,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A337F1B562B365350AB84AAB /* Pods-RNZenDeskSupport.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)/\"",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"${SYMROOT}",
 					"$(SRCROOT)/../../react-native/React/**",
