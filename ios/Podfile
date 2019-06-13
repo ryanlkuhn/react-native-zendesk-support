@@ -1,10 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'RNZenDeskSupport' do
+target 'react-native-zendesk-support' do
   # Comment the next line if you don't want to use dynamic frameworks
-  pod 'ZendeskSDK'
+  # use_frameworks!
 
-  # Pods for RNZenDeskSupport
+  # Pods for react-native-zendesk-support
+  pod 'ZendeskSDK'
 
 end
