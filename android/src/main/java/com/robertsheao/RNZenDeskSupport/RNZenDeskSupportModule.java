@@ -26,6 +26,7 @@ import zendesk.support.CustomField;
 import zendesk.support.Support;
 import zendesk.support.request.RequestActivity;
 import zendesk.support.requestlist.RequestListActivity;
+import zendesk.support.guide.HelpCenterActivity;
 
 public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
   public RNZenDeskSupportModule(ReactApplicationContext reactContext) {
@@ -49,6 +50,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
     String appId = config.getString("appId");
     String zendeskUrl = config.getString("zendeskUrl");
     String clientId = config.getString("clientId");
+    Logger.setLoggable(true);
     Zendesk.INSTANCE.init(getReactApplicationContext(), zendeskUrl, appId, clientId);
     Support.INSTANCE.init(Zendesk.INSTANCE);
 
