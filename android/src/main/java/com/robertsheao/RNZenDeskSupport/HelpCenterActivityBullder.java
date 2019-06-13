@@ -97,15 +97,6 @@ class HelpCenterActivityBuilder {
     return this;
   }
 
-//  private HelpCenterActivityBuilder withContactConfiguration(ZendeskFeedbackConfiguration configuration) {
-//    if(configuration != null) {
-//      configuration = new WrappedZendeskFeedbackConfiguration((ZendeskFeedbackConfiguration)configuration);
-//    }
-//
-//    this.args.putSerializable("extra_contact_configuration", (Serializable)configuration);
-//    return this;
-//  }
-
   //noinspection SuspiciousToArrayCall
   HelpCenterActivityBuilder withLabelNames(ReadableArray labelNames) {
     return withLabelNames(labelNames.toArrayList().toArray(new String[]{}));
@@ -135,8 +126,8 @@ class HelpCenterActivityBuilder {
   }
 
   void show(Context context) {
-    Logger.d("HelpCenterActivity", "show: showing HelpCenterActivity", new Object[0]);
-    context.startActivity(this.intent(context));
+    HelpCenterActivity.builder()
+            .show(context);
   }
 
   private Intent intent(Context context) {
