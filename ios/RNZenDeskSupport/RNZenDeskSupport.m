@@ -11,6 +11,7 @@
 #import "RCTConvert.h"
 #endif
 
+#import "AppDelegate.h"
 #import "RNZenDeskSupport.h"
 #import <ZendeskSDK/ZendeskSDK.h>
 #import <ZendeskCoreSDK/ZendeskCoreSDK.h>
@@ -141,8 +142,8 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         ZDKRequestUiConfiguration * requestConfig = [ZDKRequestUiConfiguration new];
         requestConfig.fields = fields;
         
-        UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[requestConfig]];
-        [vc.navigationController pushViewController:helpCenter animated:YES];
+        UIViewController *request = [ZDKRequestUi buildRequestUi];
+        [vc presentViewController:request animated:YES completion:nil];
     });
 }
 
@@ -151,7 +152,7 @@ RCT_EXPORT_METHOD(supportHistory){
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
         UIViewController *vc = [window rootViewController];
         UIViewController *requestListController = [ZDKRequestUi buildRequestList];
-        [vc.navigationController pushViewController:requestListController animated:YES];
+        [vc presentViewController:requestListController animated:YES completion:nil];
     });
 }
 @end
