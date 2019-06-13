@@ -7,144 +7,145 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		179985417FAFE7652D1653AD /* libPods-react-native-zendesk-support.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3DD7606AC46653B4B2F31D /* libPods-react-native-zendesk-support.a */; };
-		B55C446022B2A2EE0073E13F /* react_native_zendesk_support.m in Sources */ = {isa = PBXBuildFile; fileRef = B55C445F22B2A2EE0073E13F /* react_native_zendesk_support.m */; };
-		B55C446122B2A2EE0073E13F /* react_native_zendesk_support.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B55C445E22B2A2EE0073E13F /* react_native_zendesk_support.h */; };
+		B5680DAB22B2A52900EFEDAB /* RNZenDeskSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B5680DAA22B2A52900EFEDAB /* RNZenDeskSupport.m */; };
+		B5680DAC22B2A52900EFEDAB /* RNZenDeskSupport.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5680DA922B2A52900EFEDAB /* RNZenDeskSupport.h */; };
+		C92C7630257CBAA88FB6F803 /* libPods-RNZenDeskSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B55C445922B2A2EE0073E13F /* CopyFiles */ = {
+		B5680DA422B2A52900EFEDAB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				B55C446122B2A2EE0073E13F /* react_native_zendesk_support.h in CopyFiles */,
+				B5680DAC22B2A52900EFEDAB /* RNZenDeskSupport.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		641002DFF4EC09D021BAC6B2 /* Pods-react-native-zendesk-support.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-zendesk-support.debug.xcconfig"; path = "Target Support Files/Pods-react-native-zendesk-support/Pods-react-native-zendesk-support.debug.xcconfig"; sourceTree = "<group>"; };
-		B55C445B22B2A2EE0073E13F /* libreact-native-zendesk-support.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libreact-native-zendesk-support.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B55C445E22B2A2EE0073E13F /* react_native_zendesk_support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = react_native_zendesk_support.h; sourceTree = "<group>"; };
-		B55C445F22B2A2EE0073E13F /* react_native_zendesk_support.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = react_native_zendesk_support.m; sourceTree = "<group>"; };
-		DE3DD7606AC46653B4B2F31D /* libPods-react-native-zendesk-support.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react-native-zendesk-support.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F39A61C848AA0D50C21E43A8 /* Pods-react-native-zendesk-support.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-zendesk-support.release.xcconfig"; path = "Target Support Files/Pods-react-native-zendesk-support/Pods-react-native-zendesk-support.release.xcconfig"; sourceTree = "<group>"; };
+		02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.debug.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.debug.xcconfig"; sourceTree = "<group>"; };
+		7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.release.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.release.xcconfig"; sourceTree = "<group>"; };
+		9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNZenDeskSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5680DA622B2A52900EFEDAB /* libRNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNZenDeskSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5680DA922B2A52900EFEDAB /* RNZenDeskSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNZenDeskSupport.h; sourceTree = "<group>"; };
+		B5680DAA22B2A52900EFEDAB /* RNZenDeskSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNZenDeskSupport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B55C445822B2A2EE0073E13F /* Frameworks */ = {
+		B5680DA322B2A52900EFEDAB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				179985417FAFE7652D1653AD /* libPods-react-native-zendesk-support.a in Frameworks */,
+				C92C7630257CBAA88FB6F803 /* libPods-RNZenDeskSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		554F6E07CA0E912AB4BCFE77 /* Frameworks */ = {
+		277F00BE3BB83D8B8C1470E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DE3DD7606AC46653B4B2F31D /* libPods-react-native-zendesk-support.a */,
+				9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B55C445222B2A2EE0073E13F = {
+		B5680D9D22B2A52900EFEDAB = {
 			isa = PBXGroup;
 			children = (
-				B55C445D22B2A2EE0073E13F /* react-native-zendesk-support */,
-				B55C445C22B2A2EE0073E13F /* Products */,
-				D114C16BC1A65DFA9C452F02 /* Pods */,
-				554F6E07CA0E912AB4BCFE77 /* Frameworks */,
+				B5680DA822B2A52900EFEDAB /* RNZenDeskSupport */,
+				B5680DA722B2A52900EFEDAB /* Products */,
+				E3B49FC0523C869FD5C5AB61 /* Pods */,
+				277F00BE3BB83D8B8C1470E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		B55C445C22B2A2EE0073E13F /* Products */ = {
+		B5680DA722B2A52900EFEDAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B55C445B22B2A2EE0073E13F /* libreact-native-zendesk-support.a */,
+				B5680DA622B2A52900EFEDAB /* libRNZenDeskSupport.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B55C445D22B2A2EE0073E13F /* react-native-zendesk-support */ = {
+		B5680DA822B2A52900EFEDAB /* RNZenDeskSupport */ = {
 			isa = PBXGroup;
 			children = (
-				B55C445E22B2A2EE0073E13F /* react_native_zendesk_support.h */,
-				B55C445F22B2A2EE0073E13F /* react_native_zendesk_support.m */,
+				B5680DA922B2A52900EFEDAB /* RNZenDeskSupport.h */,
+				B5680DAA22B2A52900EFEDAB /* RNZenDeskSupport.m */,
 			);
-			path = "react-native-zendesk-support";
+			path = RNZenDeskSupport;
 			sourceTree = "<group>";
 		};
-		D114C16BC1A65DFA9C452F02 /* Pods */ = {
+		E3B49FC0523C869FD5C5AB61 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				641002DFF4EC09D021BAC6B2 /* Pods-react-native-zendesk-support.debug.xcconfig */,
-				F39A61C848AA0D50C21E43A8 /* Pods-react-native-zendesk-support.release.xcconfig */,
+				02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */,
+				7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */,
 			);
+			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B55C445A22B2A2EE0073E13F /* react-native-zendesk-support */ = {
+		B5680DA522B2A52900EFEDAB /* RNZenDeskSupport */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B55C446422B2A2EE0073E13F /* Build configuration list for PBXNativeTarget "react-native-zendesk-support" */;
+			buildConfigurationList = B5680DAF22B2A52900EFEDAB /* Build configuration list for PBXNativeTarget "RNZenDeskSupport" */;
 			buildPhases = (
-				2EBBA2F31BF6A28B0CF1D43A /* [CP] Check Pods Manifest.lock */,
-				B55C445722B2A2EE0073E13F /* Sources */,
-				B55C445822B2A2EE0073E13F /* Frameworks */,
-				B55C445922B2A2EE0073E13F /* CopyFiles */,
-				B55C446722B2A3800073E13F /* ShellScript */,
+				9381CF0D81A54C79B7576E10 /* [CP] Check Pods Manifest.lock */,
+				B5680DA222B2A52900EFEDAB /* Sources */,
+				B5680DA322B2A52900EFEDAB /* Frameworks */,
+				B5680DA422B2A52900EFEDAB /* CopyFiles */,
+				B5680DB222B2A5B200EFEDAB /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "react-native-zendesk-support";
-			productName = "react-native-zendesk-support";
-			productReference = B55C445B22B2A2EE0073E13F /* libreact-native-zendesk-support.a */;
+			name = RNZenDeskSupport;
+			productName = RNZenDeskSupport;
+			productReference = B5680DA622B2A52900EFEDAB /* libRNZenDeskSupport.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B55C445322B2A2EE0073E13F /* Project object */ = {
+		B5680D9E22B2A52900EFEDAB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Ryan Kuhn";
 				TargetAttributes = {
-					B55C445A22B2A2EE0073E13F = {
+					B5680DA522B2A52900EFEDAB = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
-			buildConfigurationList = B55C445622B2A2EE0073E13F /* Build configuration list for PBXProject "react-native-zendesk-support" */;
+			buildConfigurationList = B5680DA122B2A52900EFEDAB /* Build configuration list for PBXProject "RNZenDeskSupport" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B55C445222B2A2EE0073E13F;
-			productRefGroup = B55C445C22B2A2EE0073E13F /* Products */;
+			mainGroup = B5680D9D22B2A52900EFEDAB;
+			productRefGroup = B5680DA722B2A52900EFEDAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B55C445A22B2A2EE0073E13F /* react-native-zendesk-support */,
+				B5680DA522B2A52900EFEDAB /* RNZenDeskSupport */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2EBBA2F31BF6A28B0CF1D43A /* [CP] Check Pods Manifest.lock */ = {
+		9381CF0D81A54C79B7576E10 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -159,14 +160,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react-native-zendesk-support-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-RNZenDeskSupport-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B55C446722B2A3800073E13F /* ShellScript */ = {
+		B5680DB222B2A5B200EFEDAB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -186,18 +187,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B55C445722B2A2EE0073E13F /* Sources */ = {
+		B5680DA222B2A52900EFEDAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55C446022B2A2EE0073E13F /* react_native_zendesk_support.m in Sources */,
+				B5680DAB22B2A52900EFEDAB /* RNZenDeskSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B55C446222B2A2EE0073E13F /* Debug */ = {
+		B5680DAD22B2A52900EFEDAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -256,7 +257,7 @@
 			};
 			name = Debug;
 		};
-		B55C446322B2A2EE0073E13F /* Release */ = {
+		B5680DAE22B2A52900EFEDAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -309,9 +310,9 @@
 			};
 			name = Release;
 		};
-		B55C446522B2A2EE0073E13F /* Debug */ = {
+		B5680DB022B2A52900EFEDAB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 641002DFF4EC09D021BAC6B2 /* Pods-react-native-zendesk-support.debug.xcconfig */;
+			baseConfigurationReference = 02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
@@ -321,9 +322,9 @@
 			};
 			name = Debug;
 		};
-		B55C446622B2A2EE0073E13F /* Release */ = {
+		B5680DB122B2A52900EFEDAB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F39A61C848AA0D50C21E43A8 /* Pods-react-native-zendesk-support.release.xcconfig */;
+			baseConfigurationReference = 7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
@@ -336,25 +337,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B55C445622B2A2EE0073E13F /* Build configuration list for PBXProject "react-native-zendesk-support" */ = {
+		B5680DA122B2A52900EFEDAB /* Build configuration list for PBXProject "RNZenDeskSupport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B55C446222B2A2EE0073E13F /* Debug */,
-				B55C446322B2A2EE0073E13F /* Release */,
+				B5680DAD22B2A52900EFEDAB /* Debug */,
+				B5680DAE22B2A52900EFEDAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B55C446422B2A2EE0073E13F /* Build configuration list for PBXNativeTarget "react-native-zendesk-support" */ = {
+		B5680DAF22B2A52900EFEDAB /* Build configuration list for PBXNativeTarget "RNZenDeskSupport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B55C446522B2A2EE0073E13F /* Debug */,
-				B55C446622B2A2EE0073E13F /* Release */,
+				B5680DB022B2A52900EFEDAB /* Debug */,
+				B5680DB122B2A52900EFEDAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B55C445322B2A2EE0073E13F /* Project object */;
+	rootObject = B5680D9E22B2A52900EFEDAB /* Project object */;
 }
