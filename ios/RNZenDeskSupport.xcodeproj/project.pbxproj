@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13BE3DEE1AC21097009241FE /* RNZenDeskSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */; };
+		92B2BDA028D021A71CFB7A58 /* libPods-RNZenDeskSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */; };
 		B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */; };
 		B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */; };
 		B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B533DDEA22B28076000D71E3 /* ZendeskSDK.framework */; };
@@ -31,6 +32,9 @@
 		134814201AA4EA6300B7C361 /* libRNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNZenDeskSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BE3DEC1AC21097009241FE /* RNZenDeskSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNZenDeskSupport.h; sourceTree = "<group>"; };
 		13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZenDeskSupport.m; sourceTree = "<group>"; };
+		47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNZenDeskSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9766B6AABE94983416CAB7BB /* Pods-RNZenDeskSupport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.debug.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.debug.xcconfig"; sourceTree = "<group>"; };
+		A337F1B562B365350AB84AAB /* Pods-RNZenDeskSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.release.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.release.xcconfig"; sourceTree = "<group>"; };
 		B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZendeskSDKStrings.bundle; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskSDKStrings.bundle"; sourceTree = "<group>"; };
 		B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskCoreSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskCoreSDK.framework"; sourceTree = "<group>"; };
 		B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskProviderSDK.framework; path = "../../Downloads/zendesk_sdk_ios-master/ZendeskSDK/5.0/ZendeskProviderSDK.framework"; sourceTree = "<group>"; };
@@ -45,6 +49,7 @@
 				B533DDEB22B28076000D71E3 /* ZendeskSDK.framework in Frameworks */,
 				B533DDE722B28066000D71E3 /* ZendeskCoreSDK.framework in Frameworks */,
 				B533DDE922B2806D000D71E3 /* ZendeskProviderSDK.framework in Frameworks */,
+				92B2BDA028D021A71CFB7A58 /* libPods-RNZenDeskSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1B3D34D49FD73890442184F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9766B6AABE94983416CAB7BB /* Pods-RNZenDeskSupport.debug.xcconfig */,
+				A337F1B562B365350AB84AAB /* Pods-RNZenDeskSupport.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +80,7 @@
 				13BE3DEC1AC21097009241FE /* RNZenDeskSupport.h */,
 				13BE3DED1AC21097009241FE /* RNZenDeskSupport.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				1B3D34D49FD73890442184F4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +91,7 @@
 				B533DDE822B2806D000D71E3 /* ZendeskProviderSDK.framework */,
 				B533DDE622B28066000D71E3 /* ZendeskCoreSDK.framework */,
 				B533DDE522B28046000D71E3 /* ZendeskSDKStrings.bundle */,
+				47A23BF524CD31225D43E704 /* libPods-RNZenDeskSupport.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -87,9 +103,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNZenDeskSupport" */;
 			buildPhases = (
+				2F56399B8242810417F3B95B /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
+				B5BE3BC922B2956900C83213 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,6 +149,48 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F56399B8242810417F3B95B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNZenDeskSupport-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5BE3BC922B2956900C83213 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZendeskCoreSDK.framework/strip-frameworks.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -229,6 +289,7 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9766B6AABE94983416CAB7BB /* Pods-RNZenDeskSupport.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
 				HEADER_SEARCH_PATHS = (
@@ -244,6 +305,7 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A337F1B562B365350AB84AAB /* Pods-RNZenDeskSupport.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/\"";
 				HEADER_SEARCH_PATHS = (
