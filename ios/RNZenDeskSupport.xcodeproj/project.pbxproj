@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5680DAB22B2A52900EFEDAB /* RNZenDeskSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B5680DAA22B2A52900EFEDAB /* RNZenDeskSupport.m */; };
 		B5680DAC22B2A52900EFEDAB /* RNZenDeskSupport.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5680DA922B2A52900EFEDAB /* RNZenDeskSupport.h */; };
-		C92C7630257CBAA88FB6F803 /* libPods-RNZenDeskSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */; };
+		D9D47D591381436DC19C5236 /* libPods-RNZenDeskSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEFBD70AEE8B02CC555B81C5 /* libPods-RNZenDeskSupport.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,12 +26,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.debug.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.debug.xcconfig"; sourceTree = "<group>"; };
-		7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.release.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.release.xcconfig"; sourceTree = "<group>"; };
-		9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNZenDeskSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29108BC69E530B68A63ACFA3 /* Pods-RNZenDeskSupport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.debug.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.debug.xcconfig"; sourceTree = "<group>"; };
+		B320D02CB1FFE7765947749F /* Pods-RNZenDeskSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNZenDeskSupport.release.xcconfig"; path = "Target Support Files/Pods-RNZenDeskSupport/Pods-RNZenDeskSupport.release.xcconfig"; sourceTree = "<group>"; };
 		B5680DA622B2A52900EFEDAB /* libRNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNZenDeskSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5680DA922B2A52900EFEDAB /* RNZenDeskSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNZenDeskSupport.h; sourceTree = "<group>"; };
 		B5680DAA22B2A52900EFEDAB /* RNZenDeskSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNZenDeskSupport.m; sourceTree = "<group>"; };
+		EEFBD70AEE8B02CC555B81C5 /* libPods-RNZenDeskSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNZenDeskSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +39,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C92C7630257CBAA88FB6F803 /* libPods-RNZenDeskSupport.a in Frameworks */,
+				D9D47D591381436DC19C5236 /* libPods-RNZenDeskSupport.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		277F00BE3BB83D8B8C1470E7 /* Frameworks */ = {
+		7DB5580C20C96AD001F38365 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9D27BFC070EF68C1D4A85705 /* libPods-RNZenDeskSupport.a */,
+				EEFBD70AEE8B02CC555B81C5 /* libPods-RNZenDeskSupport.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -60,7 +60,7 @@
 				B5680DA822B2A52900EFEDAB /* RNZenDeskSupport */,
 				B5680DA722B2A52900EFEDAB /* Products */,
 				E3B49FC0523C869FD5C5AB61 /* Pods */,
-				277F00BE3BB83D8B8C1470E7 /* Frameworks */,
+				7DB5580C20C96AD001F38365 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,10 +84,9 @@
 		E3B49FC0523C869FD5C5AB61 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */,
-				7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */,
+				29108BC69E530B68A63ACFA3 /* Pods-RNZenDeskSupport.debug.xcconfig */,
+				B320D02CB1FFE7765947749F /* Pods-RNZenDeskSupport.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -98,7 +97,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5680DAF22B2A52900EFEDAB /* Build configuration list for PBXNativeTarget "RNZenDeskSupport" */;
 			buildPhases = (
-				9381CF0D81A54C79B7576E10 /* [CP] Check Pods Manifest.lock */,
+				89994D4C56020C826B2FDA16 /* [CP] Check Pods Manifest.lock */,
 				B5680DA222B2A52900EFEDAB /* Sources */,
 				B5680DA322B2A52900EFEDAB /* Frameworks */,
 				B5680DA422B2A52900EFEDAB /* CopyFiles */,
@@ -145,7 +144,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9381CF0D81A54C79B7576E10 /* [CP] Check Pods Manifest.lock */ = {
+		89994D4C56020C826B2FDA16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -312,7 +311,7 @@
 		};
 		B5680DB022B2A52900EFEDAB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02256C4B3854432A18BAA85E /* Pods-RNZenDeskSupport.debug.xcconfig */;
+			baseConfigurationReference = 29108BC69E530B68A63ACFA3 /* Pods-RNZenDeskSupport.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
@@ -324,7 +323,7 @@
 		};
 		B5680DB122B2A52900EFEDAB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EBB8269DD75627306CEBE35 /* Pods-RNZenDeskSupport.release.xcconfig */;
+			baseConfigurationReference = B320D02CB1FFE7765947749F /* Pods-RNZenDeskSupport.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
