@@ -11,10 +11,10 @@
 #import "RCTConvert.h"
 #endif
 
-#import "AppDelegate.h"
 #import "RNZenDeskSupport.h"
 #import <ZendeskSDK/ZendeskSDK.h>
 #import <ZendeskCoreSDK/ZendeskCoreSDK.h>
+#import <sys/utsname.h>
 
 @implementation RNZenDeskSupport
 
@@ -78,18 +78,24 @@ RCT_EXPORT_METHOD(showSectionsWithOptions:(NSArray *)sections options:(NSDiction
         
         UIViewController *vc = [window rootViewController];
         
-        ZDKHelpCenterOverviewContentModel *helpCenterContentModel = [ZDKHelpCenterOverviewContentModel defaultContent];
-        helpCenterContentModel.groupType = ZDKHelpCenterOverviewGroupTypeSection;
-        helpCenterContentModel.groupIds = sections;
-        helpCenterContentModel.hideContactSupport = [RCTConvert BOOL:options[@"hideContactSupport"]];
-        ZDKHelpCenterUiConfiguration* helpCenterUiConfig = [ZDKHelpCenterUiConfiguration new];
-        if (helpCenterContentModel.hideContactSupport) {
-            [helpCenterUiConfig setHideContactSupport:YES];
-        }
-        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        ZDKHelpCenterUiConfiguration * hcConfig = [ZDKHelpCenterUiConfiguration new];
+        [hcConfig setGroupType:ZDKHelpCenterOverviewGroupTypeSection];
+        [hcConfig setGroupIds:@[@115000600952, @115001289432]];
         
-        UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[helpCenterUiConfig]];
-        [vc.navigationController pushViewController:helpCenter animated:YES];
+        UIViewController *helpCenter = [ZDKHelpCenterUi buildHelpCenterOverviewUiWithConfigs:@[hcConfig]];
+        [vc presentViewController:helpCenter animated:YES completion:nil];
+    });
+}
+
+RCT_EXPORT_METHOD(showSection:(NSString *)section) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIWindow *window=[UIApplication sharedApplication].keyWindow;
+        
+        UIViewController *vc = [window rootViewController];
+        
+        UIViewController *articleController = [ZDKHelpCenterUi buildHelpCenterArticleUiWithArticleId:section andConfigs:@[]];
+        [vc presentViewController:articleController animated:YES completion:nil];
     });
 }
 
@@ -127,22 +133,62 @@ RCT_EXPORT_METHOD(showLabels:(NSArray *)labels) {
     [self showLabelsWithOptions:labels options:nil];
 }
 
+ZDKHelpCenterProvider * provider;
+
+RCT_EXPORT_METHOD(createProvider) {
+    provider = [[ZDKHelpCenterProvider alloc] init];
+}
+
+RCT_EXPORT_METHOD(getArticle:(NSString *)article callback:(RCTResponseSenderBlock)callback) {
+    [provider getArticleWithId:article withCallback:^(NSArray *items, NSError *error) {
+        NSString *title = [[items objectAtIndex:0] title];
+        NSString *body = [[items objectAtIndex:0] body];
+        NSString *article_details = [[items objectAtIndex:0] article_details];
+        NSArray *articleData = [NSArray arrayWithObjects:title, body, article_details, nil];
+        
+        callback(@[[NSNull null], articleData]);
+    }];
+}
+
+RCT_EXPORT_METHOD(getSection:(NSString *)section callback:(RCTResponseSenderBlock)callback) {
+    [provider getArticlesWithSectionId:section withCallback:^(NSArray *items, NSError *error) {
+        NSMutableArray* returnArticles = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [items count]; i++)
+        {
+            NSMutableArray *section = [[NSMutableArray alloc] init];
+            section[0] = [[items objectAtIndex:i] title];
+            section[1] = [[items objectAtIndex:i] identifier];
+            [returnArticles addObject: section];
+        }
+        NSArray *articleData = [returnArticles copy];
+        callback(@[[NSNull null], articleData]);
+    }];
+}
+
+RCT_EXPORT_METHOD(getCategory:(NSString *)category callback:(RCTResponseSenderBlock)callback) {
+    [provider getSectionsWithCategoryId:category withCallback:^(NSArray *items, NSError *error) {
+        NSMutableArray* returnSections = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [items count]; i++)
+        {
+            NSMutableArray *section = [[NSMutableArray alloc] init];
+            section[0] = [[items objectAtIndex:i] name];
+            section[1] = [[items objectAtIndex:i] identifier];
+            [returnSections addObject: section];
+        }
+        NSArray *sectionData = [returnSections copy];
+        callback(@[[NSNull null], sectionData]);
+    }];
+}
+
 RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
         UIViewController *vc = [window rootViewController];
         
-        NSMutableArray *fields = [[NSMutableArray alloc] init];
-        
-        for (NSString* key in customFields) {
-            id value = [customFields objectForKey:key];
-            [fields addObject: [[ZDKCustomField alloc] initWithFieldId:@(key.intValue) andValue:value]];
-        }
-        
         ZDKRequestUiConfiguration * requestConfig = [ZDKRequestUiConfiguration new];
-        requestConfig.fields = fields;
+        requestConfig.tags = [NSArray arrayWithObjects:@"mobile", deviceName(), "iOS", nil];
         
-        UIViewController *request = [ZDKRequestUi buildRequestUi];
+        UIViewController *request = [ZDKRequestUi buildRequestUiWith:@[requestConfig]];
         [vc presentViewController:request animated:YES completion:nil];
     });
 }
@@ -151,8 +197,22 @@ RCT_EXPORT_METHOD(supportHistory){
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
         UIViewController *vc = [window rootViewController];
-        UIViewController *requestListController = [ZDKRequestUi buildRequestList];
+        
+        ZDKRequestUiConfiguration * requestConfig = [ZDKRequestUiConfiguration new];
+        requestConfig.tags = [NSArray arrayWithObjects:@"mobile", deviceName(), "iOS", nil];
+        
+        UIViewController *requestListController = [ZDKRequestUi buildRequestListWith:@[requestConfig]];
         [vc presentViewController:requestListController animated:YES completion:nil];
     });
 }
+
+NSString* deviceName()
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
+
 @end
