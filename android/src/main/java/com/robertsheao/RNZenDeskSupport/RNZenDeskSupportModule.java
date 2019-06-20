@@ -37,8 +37,13 @@ import zendesk.core.Zendesk;
 import zendesk.support.Article;
 import zendesk.support.ArticleItem;
 import zendesk.support.Category;
+import zendesk.support.Comment;
+import zendesk.support.CommentResponse;
+import zendesk.support.CommentsResponse;
 import zendesk.support.CustomField;
 import zendesk.support.HelpCenterProvider;
+import zendesk.support.Request;
+import zendesk.support.RequestProvider;
 import zendesk.support.Section;
 import zendesk.support.Support;
 import zendesk.support.guide.ViewArticleActivity;
@@ -48,7 +53,8 @@ import zendesk.support.guide.HelpCenterActivity;
 
 public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
-  HelpCenterProvider provider;
+  HelpCenterProvider HelpCenterProvider;
+  RequestProvider requestProvider;
 
   public RNZenDeskSupportModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -183,14 +189,71 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
   // PROVIDER METHODS
 
   @ReactMethod
-  public void createProvider() {
-    Log.i("CATEGORYB", "CREATEBOI");
-    provider = Support.INSTANCE.provider().helpCenterProvider();
+  public void createHCProvider() {
+    HelpCenterProvider = Support.INSTANCE.provider().helpCenterProvider();
+  }
+
+  @ReactMethod
+  public void createRequestProvider() {
+    requestProvider = Support.INSTANCE.provider().requestProvider();
+  }
+
+  @ReactMethod
+  public void getUsersTickets(final Callback returnTickets) {
+    requestProvider.getAllRequests(new ZendeskCallback<List<Request>>() {
+      @Override
+      public void onSuccess(List<Request> requests) {
+
+        WritableArray tickets = new WritableNativeArray();
+        for(Request request: requests) {
+          WritableArray ticket = new WritableNativeArray();
+          ticket.pushString(request.getId());
+          ticket.pushString(request.getSubject());
+          ticket.pushString(request.getDescription());
+          ticket.pushString(request.getCreatedAt().toString());
+          tickets.pushArray(ticket);
+        }
+        WritableArray error = new WritableNativeArray();
+        error.pushNull();
+        returnTickets.invoke(error, tickets);
+      }
+
+      @Override
+      public void onError(ErrorResponse errorResponse) {
+
+      }
+    });
+  }
+
+  @ReactMethod
+  public void getTicketComments( String ticketID ,final Callback returnTicket) {
+    requestProvider.getComments(ticketID, new ZendeskCallback<CommentsResponse>() {
+      @Override
+      public void onSuccess(CommentsResponse commentsResponse) {
+
+        WritableArray comments = new WritableNativeArray();
+        for(CommentResponse comment: commentsResponse.getComments()) {
+          WritableArray ticketComment = new WritableNativeArray();
+          ticketComment.pushString(comment.getBody());
+          ticketComment.pushString(comment.getHtmlBody());
+          ticketComment.pushString(comment.getAuthorId().toString());
+          comments.pushArray(ticketComment);
+        }
+        WritableArray error = new WritableNativeArray();
+        error.pushNull();
+        returnTicket.invoke(error, comments);
+      }
+
+      @Override
+      public void onError(ErrorResponse errorResponse) {
+
+      }
+    });
   }
 
   @ReactMethod
   public void getSection(String section, final Callback returnArticles) {
-    provider.getArticles(Long.valueOf(section), new ZendeskCallback<List<Article>>() {
+    HelpCenterProvider.getArticles(Long.valueOf(section), new ZendeskCallback<List<Article>>() {
       @Override
       public void onSuccess(List<Article> section) {
 
@@ -216,7 +279,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void getCategory(String categoryID, final Callback returnArticles) {
-    provider.getSections(Long.valueOf(categoryID), new ZendeskCallback<List<Section>>() {
+    HelpCenterProvider.getSections(Long.valueOf(categoryID), new ZendeskCallback<List<Section>>() {
       @Override
       public void onSuccess(List<Section> sections) {
         WritableArray sectionData = Arguments.createArray();
@@ -240,7 +303,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void getArticle(String article, final Callback returnArticle) {
-    provider.getArticle(Long.valueOf(article), new ZendeskCallback<Article>() {
+    HelpCenterProvider.getArticle(Long.valueOf(article), new ZendeskCallback<Article>() {
       @Override
       public void onSuccess(Article article) {
 
