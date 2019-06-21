@@ -10,7 +10,6 @@ import com.zendesk.logger.Logger;
 import zendesk.support.guide.HelpCenterActivity;
 import com.zendesk.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
