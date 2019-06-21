@@ -5,42 +5,35 @@
 
 package com.robertsheao.RNZenDeskSupport;
 
-import android.content.Intent;
 import android.app.Activity;
 import android.os.Build;
-import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.NativeModule;
-import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
-import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeArray;
-import com.facebook.react.bridge.WritableNativeMap;
 import com.zendesk.service.ErrorResponse;
 import com.zendesk.service.ZendeskCallback;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import zendesk.commonui.UiConfig;
 import zendesk.core.AnonymousIdentity;
 import zendesk.core.Zendesk;
 import zendesk.support.Article;
-import zendesk.support.ArticleItem;
-import zendesk.support.Category;
 import zendesk.support.Comment;
 import zendesk.support.CommentResponse;
 import zendesk.support.CommentsResponse;
-import zendesk.support.CustomField;
+import zendesk.support.CreateRequest;
+import zendesk.support.EndUserComment;
 import zendesk.support.HelpCenterProvider;
 import zendesk.support.Request;
 import zendesk.support.RequestProvider;
@@ -199,6 +192,34 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void createRequest(String ticketInfo, String subject, final Callback returnTicket) {
+    CreateRequest ticket = new CreateRequest();
+    List<String> tags = new ArrayList<>();
+    tags.add("mobile");
+    tags.add(Build.BRAND);
+    tags.add("API" + Build.VERSION.SDK_INT);
+    tags.add(Build.MODEL);
+    tags.add("Android");
+    ticket.setTags(tags);
+    ticket.setSubject(subject);
+    ticket.setDescription(ticketInfo);
+
+    requestProvider.createRequest(ticket, new ZendeskCallback<Request>() {
+      @Override
+      public void onSuccess(Request request) {
+        WritableArray ticket = new WritableNativeArray();
+        ticket.pushString(request.getId());
+        ticket.pushString(request.getRequesterId().toString());
+        returnTicket.invoke(ticket);
+      }
+
+      @Override
+      public void onError(ErrorResponse errorResponse) {
+      }
+    });
+  }
+
+  @ReactMethod
   public void getUsersTickets(final Callback returnTickets) {
     requestProvider.getAllRequests(new ZendeskCallback<List<Request>>() {
       @Override
@@ -209,7 +230,14 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
           WritableArray ticket = new WritableNativeArray();
           ticket.pushString(request.getId());
           ticket.pushString(request.getSubject());
-          ticket.pushString(request.getDescription());
+          ticket.pushString(request.getLastComment().getBody());
+          ticket.pushString(request.getRequesterId().toString());
+          if(request.getLastCommentingAgents().isEmpty()){
+            ticket.pushString(null);
+          }
+          else {
+            ticket.pushString(request.getLastCommentingAgents().get(0).getName());
+          }
           ticket.pushString(request.getCreatedAt().toString());
           tickets.pushArray(ticket);
         }
@@ -232,13 +260,17 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
       public void onSuccess(CommentsResponse commentsResponse) {
 
         WritableArray comments = new WritableNativeArray();
-        for(CommentResponse comment: commentsResponse.getComments()) {
+        List<CommentResponse> commentsList = commentsResponse.getComments();
+
+        for(int i = commentsList.size() - 1; i >= 0; i--) {
+          CommentResponse comment = commentsList.get(i);
           WritableArray ticketComment = new WritableNativeArray();
           ticketComment.pushString(comment.getBody());
-          ticketComment.pushString(comment.getHtmlBody());
           ticketComment.pushString(comment.getAuthorId().toString());
           comments.pushArray(ticketComment);
+
         }
+        Collections.reverse(Arrays.asList(comments));
         WritableArray error = new WritableNativeArray();
         error.pushNull();
         returnTicket.invoke(error, comments);
@@ -247,6 +279,22 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
       @Override
       public void onError(ErrorResponse errorResponse) {
 
+      }
+    });
+  }
+
+  @ReactMethod
+  public void addComment(String ticketID, String comment, final Callback respond) {
+    EndUserComment userComment = new EndUserComment();
+    userComment.setValue(comment);
+    requestProvider.addComment(ticketID, userComment, new ZendeskCallback<Comment>() {
+      @Override
+      public void onSuccess(Comment comment) {
+        respond.invoke();
+      }
+
+      @Override
+      public void onError(ErrorResponse errorResponse) {
       }
     });
   }
