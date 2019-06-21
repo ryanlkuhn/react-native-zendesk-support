@@ -121,6 +121,10 @@ RCT_EXPORT_METHOD(showHelpCenter) {
     [self showHelpCenterWithOptions:nil];
 }
 
+RCT_EXPORT_METHOD(callSupport) {
+    [self callSupportWithOptions:nil];
+}
+
 RCT_EXPORT_METHOD(showCategories:(NSArray *)categories) {
     [self showCategoriesWithOptions:categories options:nil];
 }
@@ -133,14 +137,74 @@ RCT_EXPORT_METHOD(showLabels:(NSArray *)labels) {
     [self showLabelsWithOptions:labels options:nil];
 }
 
-ZDKHelpCenterProvider * provider;
+ZDKHelpCenterProvider * HCprovider;
+ZDKRequestProvider * RequestProvider;
 
-RCT_EXPORT_METHOD(createProvider) {
-    provider = [[ZDKHelpCenterProvider alloc] init];
+RCT_EXPORT_METHOD(createHCProvider) {
+    HCprovider = [ZDKHelpCenterProvider new];
+}
+
+RCT_EXPORT_METHOD(createRequestProvider) {
+    RequestProvider = [ZDKRequestProvider new];
+}
+
+RCT_EXPORT_METHOD(createRequest:(NSString *)text :(NSString *)subject :(RCTResponseSenderBlock)callback) {
+    ZDKCreateRequest *ticket = [[ZDKCreateRequest alloc] init];
+    [ticket setSubject:subject];
+    [ticket setRequestDescription:text];
+    NSArray *tags = [NSArray arrayWithObjects:@"mobile", deviceName(), @"iOS", nil];
+    [ticket setTags:tags];
+    
+    [RequestProvider createRequest:ticket withCallback:^(id result, NSError *error) {
+    }];
+}
+
+RCT_EXPORT_METHOD(getUsersTickets:(RCTResponseSenderBlock)callback) {
+    [RequestProvider getAllRequestsWithCallback:^(ZDKRequestsWithCommentingAgents *requestsWithCommentingAgents, NSError *error) {
+        NSMutableArray *tickets = [[NSMutableArray alloc] init];
+        NSArray *requests = [requestsWithCommentingAgents requests];
+        for (int i = 0; i < [requests count]; i++)
+        {
+            NSMutableArray *ticket = [[NSMutableArray alloc] init];
+            ticket[0] = [[requests objectAtIndex:i] requestId];
+            ticket[1] = [[requests objectAtIndex:i] subject];
+            ticket[2] = [[[requests objectAtIndex:i] lastComment] body];
+            ticket[3] = [[requests objectAtIndex:i] requesterId];
+            ticket[4] = [NSNull null];
+            if([[requests objectAtIndex:i] commentingAgentsIds]) {
+                ticket[4] = @"Team Suitable";
+            }
+            ticket[5] = dateToString([[requests objectAtIndex:i] createdAt]);
+            tickets[i] = ticket;
+        }
+        callback(@[[NSNull null], tickets]);
+    }];
+}
+
+RCT_EXPORT_METHOD(getTicketComments:(NSString *)id :(RCTResponseSenderBlock)callback) {
+    [RequestProvider getCommentsWithRequestId:id withCallback:^(NSArray<ZDKCommentWithUser *> *commentsWithUsers, NSError *error) {
+        NSMutableArray *comments = [[NSMutableArray alloc] init];
+        NSInteger count = [commentsWithUsers count];
+        for(int i = 0; i < count; i++) {
+            NSMutableArray *comment = [[NSMutableArray alloc] init];
+            ZDKCommentWithUser *commentInfo = [commentsWithUsers objectAtIndex:i];
+            comment[0] = [[commentInfo comment] body];
+            comment[1] = [[commentInfo user] userId];
+            comments[i] = comment;
+        }
+        NSArray* orderedComments = [[comments reverseObjectEnumerator] allObjects];
+        callback(@[[NSNull null], orderedComments]);
+    }];
+}
+
+RCT_EXPORT_METHOD(addComment:(NSString *)id :(NSString *)comment :(RCTResponseSenderBlock)callback) {
+    [RequestProvider addComment:comment forRequestId:id withCallback:^(ZDKComment *comment, NSError *error) {
+        callback(@[[NSNull null]]);
+    }];
 }
 
 RCT_EXPORT_METHOD(getArticle:(NSString *)article callback:(RCTResponseSenderBlock)callback) {
-    [provider getArticleWithId:article withCallback:^(NSArray *items, NSError *error) {
+    [HCprovider getArticleWithId:article withCallback:^(NSArray *items, NSError *error) {
         NSString *title = [[items objectAtIndex:0] title];
         NSString *body = [[items objectAtIndex:0] body];
         NSString *article_details = [[items objectAtIndex:0] article_details];
@@ -151,7 +215,7 @@ RCT_EXPORT_METHOD(getArticle:(NSString *)article callback:(RCTResponseSenderBloc
 }
 
 RCT_EXPORT_METHOD(getSection:(NSString *)section callback:(RCTResponseSenderBlock)callback) {
-    [provider getArticlesWithSectionId:section withCallback:^(NSArray *items, NSError *error) {
+    [HCprovider getArticlesWithSectionId:section withCallback:^(NSArray *items, NSError *error) {
         NSMutableArray* returnArticles = [[NSMutableArray alloc] init];
         for (int i = 0; i < [items count]; i++)
         {
@@ -166,7 +230,7 @@ RCT_EXPORT_METHOD(getSection:(NSString *)section callback:(RCTResponseSenderBloc
 }
 
 RCT_EXPORT_METHOD(getCategory:(NSString *)category callback:(RCTResponseSenderBlock)callback) {
-    [provider getSectionsWithCategoryId:category withCallback:^(NSArray *items, NSError *error) {
+    [HCprovider getSectionsWithCategoryId:category withCallback:^(NSArray *items, NSError *error) {
         NSMutableArray* returnSections = [[NSMutableArray alloc] init];
         for (int i = 0; i < [items count]; i++)
         {
@@ -180,13 +244,13 @@ RCT_EXPORT_METHOD(getCategory:(NSString *)category callback:(RCTResponseSenderBl
     }];
 }
 
-RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
+RCT_EXPORT_METHOD(callSupportWithOptions:(NSDictionary *)customFields) {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
         UIViewController *vc = [window rootViewController];
         
         ZDKRequestUiConfiguration * requestConfig = [ZDKRequestUiConfiguration new];
-        requestConfig.tags = [NSArray arrayWithObjects:@"mobile", deviceName(), "iOS", nil];
+        requestConfig.tags = [NSArray arrayWithObjects:@"mobile", deviceName(), @"iOS", nil];
         
         UIViewController *request = [ZDKRequestUi buildRequestUiWith:@[requestConfig]];
         [vc presentViewController:request animated:YES completion:nil];
@@ -213,6 +277,16 @@ NSString* deviceName()
     
     return [NSString stringWithCString:systemInfo.machine
                               encoding:NSUTF8StringEncoding];
+}
+
+NSString* dateToString(NSDate *date)
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    NSString *result = [formatter stringFromDate:date];
+    return result;
 }
 
 @end
