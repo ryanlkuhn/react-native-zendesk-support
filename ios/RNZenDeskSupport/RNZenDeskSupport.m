@@ -156,6 +156,7 @@ RCT_EXPORT_METHOD(createRequest:(NSString *)text :(NSString *)subject :(RCTRespo
     [ticket setTags:tags];
     
     [RequestProvider createRequest:ticket withCallback:^(id result, NSError *error) {
+        callback(@[[NSNull null]]);
     }];
 }
 
@@ -170,8 +171,9 @@ RCT_EXPORT_METHOD(getUsersTickets:(RCTResponseSenderBlock)callback) {
             ticket[1] = [[requests objectAtIndex:i] subject];
             ticket[2] = [[[requests objectAtIndex:i] lastComment] body];
             ticket[3] = [[requests objectAtIndex:i] requesterId];
-            ticket[4] = [NSNull null];
-            if([[requests objectAtIndex:i] commentingAgentsIds]) {
+            NSNull *nullValue = [NSNull new];
+            ticket[4] = nullValue;
+            if([[[requests objectAtIndex:i] commentingAgentsIds] count] != 0) {
                 ticket[4] = @"Team Suitable";
             }
             ticket[5] = dateToString([[requests objectAtIndex:i] createdAt]);
@@ -206,9 +208,8 @@ RCT_EXPORT_METHOD(addComment:(NSString *)id :(NSString *)comment :(RCTResponseSe
 RCT_EXPORT_METHOD(getArticle:(NSString *)article callback:(RCTResponseSenderBlock)callback) {
     [HCprovider getArticleWithId:article withCallback:^(NSArray *items, NSError *error) {
         NSString *title = [[items objectAtIndex:0] title];
-        NSString *body = [[items objectAtIndex:0] body];
-        NSString *article_details = [[items objectAtIndex:0] article_details];
-        NSArray *articleData = [NSArray arrayWithObjects:title, body, article_details, nil];
+        NSString *article_url = [[items objectAtIndex:0] htmlUrl];
+        NSArray *articleData = [NSArray arrayWithObjects:title, article_url, nil];
         
         callback(@[[NSNull null], articleData]);
     }];

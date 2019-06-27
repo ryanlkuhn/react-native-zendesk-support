@@ -357,9 +357,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
         WritableArray articleInfo = new WritableNativeArray();
         articleInfo.pushString(article.getTitle());
-        articleInfo.pushString(article.getBody());
-        articleInfo.pushString(article.getAuthor().toString());
-        articleInfo.pushString(article.getCreatedAt().toString());
+        articleInfo.pushString(article.getHtmlUrl());
         WritableArray error = new WritableNativeArray();
         error.pushNull();
         returnArticle.invoke(error, articleInfo);
