@@ -1,16 +1,11 @@
-require "json"
-
-json = File.read(File.join(__dir__, "package.json"))
-package = JSON.parse(json).deep_symbolize_keys
 
 Pod::Spec.new do |s|
-  s.name = package[:name].include?("/") ? package[:name].split("/").last : package[:name]
-  s.version = package[:version]
+  s.name = react-native-zendesk-support
   s.license = package[:license]
-  s.authors = package[:author]
+  s.authors = ryan l kuhn
   s.summary = package[:description]
-  s.source = { :git => 'https://ryanlkuhn@github.com/ryanlkuhn/react-native-zendesk-support.git',  :tag => 'v'+s.version.to_s }
-  s.homepage = 'https://ryanlkuhn@github.com/ryanlkuhn/react-native-zendesk-support'
+  s.source = { :git => 'https://github.com/ryanlkuhn/react-native-zendesk-support.git',  :tag => 'v'+s.version.to_s }
+  s.homepage = 'https://github.com/ryanlkuhn/react-native-zendesk-support'
   s.source_files   = 'ios/RNZenDeskSupport.{h,m}'
 
   s.platform = :ios, "8.0"
